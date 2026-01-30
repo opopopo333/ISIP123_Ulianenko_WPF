@@ -29,36 +29,47 @@ namespace PR13
 
         private void PlaceOrder_Click(object sender, RoutedEventArgs e)
         {
-            // Создание заказа
+            if (string.IsNullOrWhiteSpace(FullNameText.Text) ||
+                string.IsNullOrWhiteSpace(EmailText.Text) ||
+                string.IsNullOrWhiteSpace(AddressText.Text))
+            {
+                MessageBox.Show("Заполните все поля!");
+                return;
+            }
+
+            // Создаём объект заказа
             var order = new Orders
             {
                 FullName = FullNameText.Text,
                 Email = EmailText.Text,
                 Address = AddressText.Text,
-                TotalAmount = Core.Cart.Sum(i => i.Product.Price * i.Quantity),
+                TotalAmount = Core.Cart.Sum(x => x.Total),
                 OrderDate = DateTime.Now
             };
 
+            // Добавляем заказ в БД
             Core.Context.Orders.Add(order);
-            Core.Context.SaveChanges();
+            Core.Context.SaveChanges(); // сначала сохраняем, чтобы получить Id заказа
 
             // Добавляем товары заказа
             foreach (var item in Core.Cart)
             {
-                Core.Context.OrderItems.Add(new OrderItems
+                var orderItem = new OrderItems
                 {
                     OrderId = order.Id,
                     ProductId = item.Product.Id,
                     Quantity = item.Quantity,
                     Price = item.Product.Price
-                });
+                };
+                Core.Context.OrderItems.Add(orderItem);
             }
 
-            Core.Context.SaveChanges();
+            Core.Context.SaveChanges(); // сохраняем товары заказа
 
+            // Очищаем корзину
             Core.Cart.Clear();
+
             MessageBox.Show("Заказ оформлен!");
-            NavigationService.Navigate(new ProductsPage());
         }
     }
 }

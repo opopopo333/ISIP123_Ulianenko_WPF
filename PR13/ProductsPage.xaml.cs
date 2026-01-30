@@ -37,7 +37,6 @@ namespace PR13
             var button = sender as Button;
             var product = button.DataContext as Products;
 
-            // Добавление в глобальную корзину Core.Cart
             var existing = Core.Cart.Find(x => x.Product.Id == product.Id);
             if (existing != null)
                 existing.Quantity++;
