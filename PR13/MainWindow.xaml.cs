@@ -23,6 +23,24 @@ namespace PR13
         public MainWindow()
         {
             InitializeComponent();
+
+            // Загружаем страницу товаров при старте
+            MainFrame.Navigate(new ProductsPage());
+        }
+
+        private void ProductsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductsPage());
+        }
+
+        private void CartButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CartPage());
+        }
+
+        private void CheckoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CheckoutPage());
         }
     }
 }

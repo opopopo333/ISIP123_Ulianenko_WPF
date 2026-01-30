@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="#FF2E3B4E" >
+            <TextBlock Text="Меню" Foreground="White" FontSize="20" Margin="10"/>
+
+            <Button Content="Товары" Margin="10" Height="40" Click="ProductsButton_Click"/>
+            <Button Content="Корзина" Margin="10" Height="40" Click="CartButton_Click"/>
+            <Button Content="Оформить заказ" Margin="10" Height="40" Click="CheckoutButton_Click"/>
+        </StackPanel>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
