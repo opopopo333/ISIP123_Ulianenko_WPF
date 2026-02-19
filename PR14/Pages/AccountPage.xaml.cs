@@ -38,7 +38,7 @@ namespace PR14.Pages
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
             var userOrders = Core.Context.Orders
-                .Where(o => o.UserId == Core.CurrentUser.Id)
+                .Where(o => o.UserId == Core.CurrentUser.UserID)
                 .ToList();
 
             if (userOrders.Count == 0)
