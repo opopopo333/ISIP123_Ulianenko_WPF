@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PR14.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace PR14
         public MainWindow()
         {
             InitializeComponent();
+
+            // Переход на главную страницу при запуске
+            MainFrame.Navigate(new Pages.MainPage());
         }
     }
 }
