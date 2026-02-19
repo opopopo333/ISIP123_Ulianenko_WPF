@@ -63,12 +63,13 @@ namespace PR14.Pages
             }
 
             // Жанры
-            var genres = Core.Context.MoviesGenres
-                .Where(mg => mg.MovieID == _movieId)
-                .Select(mg => mg.Genres.Name)
-                .ToList();
+            var genre = Core.Context.Movies.FirstOrDefault(m => m.MovieID == _movieId);
 
-            GenresText.Text = string.Join(", ", genres);
+            if (movie != null)
+            {
+                var genres = movie.Genres.Select(g => g.Name).ToList();
+                GenresText.Text = string.Join(", ", genres);
+            }
 
             // Сеансы
             var sessions = Core.Context.Sessions

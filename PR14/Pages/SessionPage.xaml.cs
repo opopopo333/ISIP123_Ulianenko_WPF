@@ -32,7 +32,7 @@ namespace PR14.Pages
             if (Core.CurrentUser == null)
             {
                 MessageBox.Show("Для покупки билета необходимо войти в аккаунт.");
-                NavigationService.Navigate(new LoginPage());
+                ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new LoginPage());
                 return;
             }
 
@@ -45,13 +45,25 @@ namespace PR14.Pages
                 .FirstOrDefault(s => s.SessionID == _sessionId);
 
             if (session == null)
+            {
+                MessageBox.Show("Сеанс не найден.");
+                NavigationService.GoBack();
                 return;
+            }
+
+            var hall = Core.Context.Halls.FirstOrDefault(h => h.HallID == session.HallID);
+            if (hall == null)
+            {
+                MessageBox.Show("Зал не найден.");
+                NavigationService.GoBack();
+                return;
+            }
 
             SessionInfoText.Text =
-                $"{session.ShowTime} | Зал: {session.Halls.Name} | Цена: {session.Price}";
+                $"{session.ShowTime} | Зал: {hall.Name} | Цена: {session.Price}";
 
             var seats = Core.Context.Seats
-                .Where(s => s.HallID == session.HallID)
+                .Where(s => s.HallID == hall.HallID)
                 .OrderBy(s => s.RowNumber)
                 .ThenBy(s => s.SeatNumber)
                 .ToList();

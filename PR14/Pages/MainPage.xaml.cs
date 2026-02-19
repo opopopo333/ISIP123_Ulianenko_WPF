@@ -67,7 +67,7 @@ namespace PR14.Pages
 
         private void Account_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new LoginPage());
+            NavigationService.Navigate(new AccountPage());
         }
     }
 }

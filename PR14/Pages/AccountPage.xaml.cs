@@ -37,18 +37,36 @@ namespace PR14.Pages
 
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
-            var userOrders = Core.Context.Orders
-                .Where(o => o.UserId == Core.CurrentUser.UserID)
+            if (Core.CurrentUser == null)
+            {
+                MessageBox.Show("Вы не авторизованы.");
+                // Переходим на страницу входа
+                ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new LoginPage());
+                return;
+            }
+
+            var tickets = Core.Context.Tickets
+                .Where(t => t.UserID == Core.CurrentUser.UserID)
                 .ToList();
 
-            if (userOrders.Count == 0)
+            if (tickets.Count == 0)
             {
-                MessageBox.Show("У вас пока нет заказов.");
+                MessageBox.Show("У вас пока нет билетов.");
+                return;
             }
-            else
+
+            string message = "Ваши билеты:\n\n";
+
+            foreach (var t in tickets)
             {
-                MessageBox.Show($"Количество заказов: {userOrders.Count}");
+                var session = Core.Context.Sessions.FirstOrDefault(s => s.SessionID == t.SessionID);
+                var movie = Core.Context.Movies.FirstOrDefault(m => m.MovieID == session.MovieID);
+                var seat = Core.Context.Seats.FirstOrDefault(s => s.SeatID == t.SeatID);
+
+                message += $"{movie.Title} | Зал: {session.HallID} | {session.ShowTime} | Место: Ряд {seat.RowNumber}, Место {seat.SeatNumber}\n";
             }
+
+            MessageBox.Show(message);
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
