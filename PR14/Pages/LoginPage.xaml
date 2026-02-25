@@ -37,6 +37,10 @@
                     Height="35"
                     Margin="0,10,0,0"
                     Click="Register_Click"/>
+            <Button Content="Главное меню"
+        Height="35"
+        Margin="0,10,0,0"
+        Click="Main_Click"/>
 
         </StackPanel>
     </Grid>

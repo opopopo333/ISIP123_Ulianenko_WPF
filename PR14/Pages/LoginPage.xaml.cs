@@ -1,4 +1,4 @@
-﻿using System;
+﻿`using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,6 +55,11 @@ namespace PR14.Pages
         private void Register_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RegisterPage());
+        }
+        private void Main_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainPage());
+            Core.Context.Movies
         }
     }
 }

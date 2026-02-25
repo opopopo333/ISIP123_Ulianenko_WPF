@@ -40,7 +40,6 @@ namespace PR14.Pages
             if (Core.CurrentUser == null)
             {
                 MessageBox.Show("Вы не авторизованы.");
-                // Переходим на страницу входа
                 ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new LoginPage());
                 return;
             }
@@ -73,6 +72,11 @@ namespace PR14.Pages
         {
             Core.CurrentUser = null;
             NavigationService.Navigate(new LoginPage());
+        }
+
+        private void Main_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainPage());
         }
     }
 }

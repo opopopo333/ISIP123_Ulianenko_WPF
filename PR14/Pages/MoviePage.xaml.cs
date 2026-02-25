@@ -20,7 +20,7 @@ namespace PR14.Pages
     /// </summary>
     public partial class MoviePage : Page
     {
-        private int _movieId;
+        public int _movieId;
 
         public MoviePage(int movieId)
         {
@@ -42,19 +42,12 @@ namespace PR14.Pages
             AgeText.Text = movie.AgeRating;
             DescriptionText.Text = movie.Description;
 
-            // Загрузка изображения по URL из БД
             if (!string.IsNullOrWhiteSpace(movie.ImagePath))
             {
                 try
                 {
-                    var bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(movie.ImagePath);
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
-                    bitmap.Freeze();
-
-                    MovieImage.Source = bitmap;
+                    var uri = new Uri(movie.ImagePath, UriKind.RelativeOrAbsolute);
+                    MovieImage.Source = new BitmapImage(uri);
                 }
                 catch
                 {
@@ -62,7 +55,6 @@ namespace PR14.Pages
                 }
             }
 
-            // Жанры
             var genre = Core.Context.Movies.FirstOrDefault(m => m.MovieID == _movieId);
 
             if (movie != null)
@@ -83,8 +75,22 @@ namespace PR14.Pages
         private void SelectSession_Click(object sender, RoutedEventArgs e)
         {
             int sessionId = (int)((Button)sender).Tag;
+            if (Core.CurrentUser == null)
+            {
+                MessageBox.Show("Войдите в аккаунт или зарегайтесь.");
+                NavigationService.Navigate(new LoginPage());
+                
+                return;
+            }
+                
+            else
+                NavigationService.Navigate(new SessionPage(sessionId));
 
-            NavigationService.Navigate(new SessionPage(sessionId));
+        }
+
+        private void Main_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainPage());
         }
     }
 }

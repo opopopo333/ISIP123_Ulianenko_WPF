@@ -28,12 +28,12 @@ namespace PR14.Pages
             InitializeComponent();
             _sessionId = sessionId;
 
-            // Проверка авторизации
             if (Core.CurrentUser == null)
             {
                 MessageBox.Show("Для покупки билета необходимо войти в аккаунт.");
                 ((MainWindow)Application.Current.MainWindow).MainFrame.Navigate(new LoginPage());
                 return;
+               
             }
 
             LoadSession();
@@ -123,6 +123,11 @@ namespace PR14.Pages
 
             NavigationService.Navigate(
                 new CheckoutPage(_sessionId, _selectedSeatId));
+        }
+
+        private void Main_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainPage());
         }
     }
 }

@@ -21,6 +21,10 @@
 
                 <StackPanel Width="600">
 
+                    <Button Content="Главное меню"
+        Height="35"
+        Click="Main_Click" Width="248"/>
+
                     <TextBlock x:Name="TitleText"
                                FontSize="24"
                                FontWeight="Bold"

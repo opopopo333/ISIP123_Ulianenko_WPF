@@ -24,8 +24,6 @@ namespace PR14
         public MainWindow()
         {
             InitializeComponent();
-
-            // Переход на главную страницу при запуске
             MainFrame.Navigate(new Pages.MainPage());
         }
     }

@@ -30,7 +30,6 @@ namespace PR14.Pages
         {
             var movies = Core.Context.Movies.ToList();
 
-            // Поиск
             if (!string.IsNullOrWhiteSpace(SearchBox.Text))
             {
                 string search = SearchBox.Text.ToLower();
@@ -39,7 +38,6 @@ namespace PR14.Pages
                     .ToList();
             }
 
-            // Сортировка
             if (SortBox.SelectedIndex == 1)
                 movies = movies.OrderBy(m => m.Title).ToList();
             else if (SortBox.SelectedIndex == 2)
@@ -67,7 +65,15 @@ namespace PR14.Pages
 
         private void Account_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AccountPage());
+            if (Core.CurrentUser == null)
+            {
+                NavigationService.Navigate(new LoginPage());
+            }
+            else
+            {
+                NavigationService.Navigate(new AccountPage());
+            }
+                
         }
     }
 }

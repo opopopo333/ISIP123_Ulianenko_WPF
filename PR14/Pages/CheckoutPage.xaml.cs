@@ -55,7 +55,6 @@ namespace PR14.Pages
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка занятости ещё раз
             bool alreadyTaken = Core.Context.Tickets
                 .Any(t => t.SessionID == _sessionId && t.SeatID == _seatId);
 
