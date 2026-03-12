@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace WpfApp1.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для BuilderPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BuilderPage : Page
     {
-        public MainWindow()
+        public BuilderPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.BuilderPage());
         }
     }
 }
