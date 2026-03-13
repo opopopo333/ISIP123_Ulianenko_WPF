@@ -10,6 +10,6 @@ namespace WpfApp1
 
     {
 
-        public static pr15Entities Context = new pr15Entities();
+        public static pr151Entities Context = new pr151Entities();
     }
 }

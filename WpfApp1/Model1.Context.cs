@@ -13,10 +13,10 @@ namespace WpfApp1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class pr15Entities : DbContext
+    public partial class pr151Entities : DbContext
     {
-        public pr15Entities()
-            : base("name=pr15Entities")
+        public pr151Entities()
+            : base("name=pr151Entities")
         {
         }
     
@@ -52,6 +52,7 @@ namespace WpfApp1
         public virtual DbSet<storagedevice_> storagedevice_ { get; set; }
         public virtual DbSet<storagedeviceinterface_> storagedeviceinterface_ { get; set; }
         public virtual DbSet<storagedevicetype_> storagedevicetype_ { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<videoconnector_> videoconnector_ { get; set; }
         public virtual DbSet<videoconnectorgpu_> videoconnectorgpu_ { get; set; }
     }
