@@ -133,6 +133,7 @@
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
                                             <TextBlock Text="{Binding name}" FontWeight="SemiBold" FontSize="13" Foreground="#333" TextWrapping="Wrap"/>
                                             <TextBlock Text="{Binding parttype_.name}" FontSize="10" Foreground="Gray"/>
+                                            <TextBlock Text="{Binding DisplayInfo}" FontSize="12" Foreground="#666" TextWrapping="Wrap"/>
                                         </StackPanel>
 
                                         <TextBlock Grid.Column="2" Text="{Binding price, StringFormat={}{0:F0} ₽}" 

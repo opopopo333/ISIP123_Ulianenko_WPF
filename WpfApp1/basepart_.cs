@@ -39,5 +39,8 @@ namespace WpfApp1
         public virtual processorcooler_ processorcooler_ { get; set; }
         public virtual ram_ ram_ { get; set; }
         public virtual storagedevice_ storagedevice_ { get; set; }
+        public virtual ssd_ ssd_ { get; set; }
+        public virtual hdd_ hdd_ { get; set; }
+
     }
 }

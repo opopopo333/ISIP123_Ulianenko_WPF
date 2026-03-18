@@ -28,32 +28,12 @@ namespace WpfApp1.Pages
 
         private void RefreshData()
         {
-            // Загружаем сборки из БД (включая связанные детали для подсчета суммы)
             LViewAssemblies.ItemsSource = Core.Context.assembly_.ToList();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Вы уверены, что хотите удалить эту сборку?", "Подтверждение",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                var assembly = (sender as Button).DataContext as assembly_;
-
-                // 1. Сначала удаляем связи из partassembly_
-                var links = Core.Context.partassembly_.Where(pa => pa.assemblyid == assembly.id);
-                Core.Context.partassembly_.RemoveRange(links);
-
-                // 2. Затем удаляем саму сборку
-                Core.Context.assembly_.Remove(assembly);
-
-                Core.Context.SaveChanges();
-                RefreshData();
-            }
         }
     }
 }
