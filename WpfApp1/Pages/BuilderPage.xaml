@@ -111,7 +111,7 @@
                     <ListView x:Name="AssemblyList" Grid.Row="1" Background="Transparent" BorderThickness="0">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="#EEEEEE" BorderThickness="0,0,0,1" Padding="5,8" Width="200">
+                                <Border Background="Transparent" BorderBrush="#EEEEEE" BorderThickness="0,0,0,1" Padding="5,8" Width="200" ToolTip="{Binding DisplayInfo, FallbackValue='Загрузка...'}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="35"/>
@@ -119,10 +119,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Button Grid.Column="0" Content="✕" Click="BtnRemovePart_Click" 
-                    Width="24" Height="24" Background="Transparent" 
-                    Foreground="LightCoral" FontWeight="Bold" BorderThickness="0" 
-                    VerticalAlignment="Center">
+                                        <Button Grid.Column="0" Content="✕" Click="BtnRemovePart_Click" Width="24" Height="24" Background="Transparent" Foreground="LightCoral" FontWeight="Bold" BorderThickness="0" VerticalAlignment="Center">
                                             <Button.Resources>
                                                 <Style TargetType="Border">
                                                     <Setter Property="CornerRadius" Value="12"/>
@@ -133,11 +130,10 @@
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
                                             <TextBlock Text="{Binding name}" FontWeight="SemiBold" FontSize="13" Foreground="#333" TextWrapping="Wrap"/>
                                             <TextBlock Text="{Binding parttype_.name}" FontSize="10" Foreground="Gray"/>
-                                            <TextBlock Text="{Binding DisplayInfo}" FontSize="12" Foreground="#666" TextWrapping="Wrap"/>
                                         </StackPanel>
 
                                         <TextBlock Grid.Column="2" Text="{Binding price, StringFormat={}{0:F0} ₽}" 
-                       VerticalAlignment="Center" Foreground="#666" FontSize="12"/>
+           VerticalAlignment="Center" Foreground="#666" FontSize="12"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
