@@ -8,7 +8,7 @@ namespace PR14
 {
     public class Core
     {
-        public static ULIPR14Entities Context = new ULIPR14Entities();
-        public static Users CurrentUser;
+        public static pr14Entities1 Context = new pr14Entities1();
+        public static User CurrentUser;
     }
 }

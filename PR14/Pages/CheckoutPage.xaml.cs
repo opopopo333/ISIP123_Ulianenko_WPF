@@ -47,7 +47,7 @@ namespace PR14.Pages
                 .FirstOrDefault(m => m.MovieID == session.MovieID);
 
             MovieText.Text = $"Фильм: {movie.Title}";
-            HallText.Text = $"Зал: {session.Halls.Name}";
+            HallText.Text = $"Зал: {session.Hall.Name}";
             DateText.Text = $"Дата и время: {session.ShowTime}";
             SeatText.Text = $"Место: Ряд {seat.RowNumber}, Место {seat.SeatNumber}";
             PriceText.Text = $"Цена: {session.Price} ₽";
@@ -64,7 +64,7 @@ namespace PR14.Pages
                 return;
             }
 
-            var ticket = new Tickets
+            var ticket = new Ticket
             {
                 SessionID = _sessionId,
                 SeatID = _seatId,

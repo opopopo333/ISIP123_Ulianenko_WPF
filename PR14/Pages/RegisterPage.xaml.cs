@@ -48,7 +48,7 @@ namespace PR14.Pages
                 return;
             }
 
-            var newUser = new Users
+            var newUser = new User
             {
                 FullName = fullName,
                 Login = login,
