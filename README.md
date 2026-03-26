@@ -13,7 +13,8 @@
 
 ## Уведомление при вводе неверных данных
 
-<img width="807" height="242" alt="image" src="https://github.com/user-attachments/assets/6ec8a763-99db-4f57-bbaa-11aaf6560e43" />
+<img width="1519" height="777" alt="image" src="https://github.com/user-attachments/assets/81c4193a-66fa-441a-8a6d-85588f946385" />
+
 
 ---
 
