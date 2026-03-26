@@ -67,5 +67,34 @@ namespace PR14.Pages
         {
             NavigationService.Navigate(new LoginPage());
         }
+
+        private void EntButton_Click(object sender, RoutedEventArgs e)
+        {
+            Auth(LoginBox.Text.Trim(), PasswordBox.Password);
+        }
+
+        public bool Auth(string login, string password)
+        {
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Введите логин и пароль!");
+                return false;
+            }
+
+            using (var db = new pr14Entities1())
+            {
+                var user = db.Users.AsNoTracking().FirstOrDefault(u => u.Login == login && u.Password == password);
+
+                if (user == null)
+                {
+                    MessageBox.Show("Пользователь с такими данными не найден!");
+                    return false;
+                }
+                MessageBox.Show("Пользователь успешно найден!");
+                LoginBox.Clear();
+                PasswordBox.Clear();
+                return true;
+            }
+        }
     }
 }
