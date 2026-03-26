@@ -60,7 +60,12 @@ namespace PR14.Pages
 
             MessageBox.Show("Регистрация успешна.");
 
-            NavigationService.Navigate(new LoginPage());
+            bool success = RegisterUser(FullNameBox.Text.Trim(), LoginBox.Text.Trim(), PasswordBox.Password.Trim());
+
+            if (success)
+            {
+                NavigationService.Navigate(new LoginPage());
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -68,33 +73,43 @@ namespace PR14.Pages
             NavigationService.Navigate(new LoginPage());
         }
 
-        private void EntButton_Click(object sender, RoutedEventArgs e)
-        {
-            Auth(LoginBox.Text.Trim(), PasswordBox.Password);
-        }
 
-        public bool Auth(string login, string password)
+        public bool RegisterUser(string fullName, string login, string password)
         {
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Введите логин и пароль!");
                 return false;
             }
 
             using (var db = new pr14Entities1())
             {
-                var user = db.Users.AsNoTracking().FirstOrDefault(u => u.Login == login && u.Password == password);
+                bool loginExists = db.Users.Any(u => u.Login == login);
 
-                if (user == null)
+                if (loginExists)
                 {
-                    MessageBox.Show("Пользователь с такими данными не найден!");
                     return false;
                 }
-                MessageBox.Show("Пользователь успешно найден!");
-                LoginBox.Clear();
-                PasswordBox.Clear();
-                return true;
+
+                try
+                {
+                    var newUser = new User
+                    {
+                        FullName = fullName,
+                        Login = login,
+                        Password = password
+                    };
+
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
+
     }
 }
