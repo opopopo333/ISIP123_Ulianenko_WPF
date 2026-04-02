@@ -64,12 +64,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Logic\CombatSystem.cs" />
+    <Compile Include="Logic\GameEngine.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Characters.cs" />
+    <Compile Include="Models\Enemies.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\RNG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +100,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\goblin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\skeleton.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,8 +5,102 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="850" Width="1800">
     <Grid>
-        
+        <Grid x:Name="MainMenuPanel" Background="White" Panel.ZIndex="10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Крутой Roguelike" FontSize="40" FontWeight="Bold" Margin="0,0,0,30" HorizontalAlignment="Center"/>
+                <Button Content="Начать игру" FontSize="24" Padding="20,10" Click="BtnStart_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="GameOverPanel" Background="#CC000000" Visibility="Collapsed" Panel.ZIndex="10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="ВЫ ПОГИБЛИ" Foreground="Red" FontSize="50" FontWeight="Bold" Margin="0,0,0,20"/>
+                <Button Content="Начать заново" FontSize="20" Padding="20,10" Click="BtnStart_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="GamePanel" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5">
+                <TextBlock Text="Название игры" FontSize="24" HorizontalAlignment="Center" Margin="5"/>
+            </Border>
+
+            <Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5,0,5,5">
+                <Grid Margin="10,5">
+                    <TextBlock x:Name="TxtFloor" Text="Этаж: 1" HorizontalAlignment="Left" FontSize="16"/>
+                    <TextBlock x:Name="TxtHp" Text="Здоровье: 100/100" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5">
+                <Grid>
+                    <ListBox x:Name="ListEnemies" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10">
+                                    <Image Source="{Binding ImagePath}" Width="600" Height="300"/>
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding CurrentHp, StringFormat=HP: {0}}" HorizontalAlignment="Center" Foreground="Red"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <StackPanel x:Name="LootPanel" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="СУНДУК!" FontSize="30" HorizontalAlignment="Center"/>
+                        <Image x:Name="ImgLoot" Width="100" Height="100"/>
+                        <TextBlock x:Name="TxtLootDesc" Text="Вы нашли..." FontSize="18" Margin="0,10" HorizontalAlignment="Center"/>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Взять" Margin="5" Padding="10,5" Click="BtnTakeLoot_Click"/>
+                            <Button Content="Выбросить" Margin="5" Padding="10,5" Click="BtnSkipLoot_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Инвентарь" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock x:Name="TxtWeapon" Text="Оружие: Деревянный меч (Урон: 2)"/>
+                    <TextBlock x:Name="TxtArmor" Text="Доспехи: Рваная туника (Защита: 1)"/>
+                    <TextBlock Text="Действия:" FontSize="16" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Атака" Margin="0,0,5,0" Padding="10,5" Click="BtnAttack_Click"/>
+                        <Button Content="Защита" Padding="10,5" Click="BtnDefend_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="1" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Логирование" FontSize="20" FontWeight="Bold"/>
+                    <ListBox Grid.Row="1" x:Name="LogBox" ItemsSource="{Binding}" BorderThickness="0"/>
+                </Grid>
+            </Border>
+
+        </Grid>
     </Grid>
 </Window>
