@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5">
-                <TextBlock Text="Название игры" FontSize="24" HorizontalAlignment="Center" Margin="5"/>
+                <TextBlock Text="ГАЧИМУЧИ BY МИЯДЗАКА" FontSize="24" HorizontalAlignment="Center" Margin="5"/>
             </Border>
 
             <Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="5,0,5,5">

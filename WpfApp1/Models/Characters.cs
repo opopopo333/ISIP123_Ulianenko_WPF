@@ -36,7 +36,6 @@ namespace WpfApp1.Models
             CurrentHp = 1000;
             BaseAttack = 5;
             BaseDefense = 2;
-            ImagePath = "Images/player.png";
             EquippedWeapon = new Weapon("Деревянный меч", 2);
             EquippedArmor = new Armor("Рваная туника", 1);
         }
